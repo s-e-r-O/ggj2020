@@ -6,17 +6,22 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Collision coll;
+    private WeaponHolder weaponHolder;
 
     [Header("Stats")]
 
     public float speed = 30f;
     public float jumpForce = 30f;
+
+    private bool facingRight = true;
+    private float deadZoneToFlip = 0.05f;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
+        weaponHolder = GetComponent<WeaponHolder>();
     }
 
     // Update is called once per frame
@@ -33,11 +38,21 @@ public class PlayerMovement : MonoBehaviour
                 Jump(Vector2.up);
             }
         }
+        
     }
 
     private void Walk(Vector2 dir)
     {
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        if (dir.x > deadZoneToFlip)
+        {
+            facingRight = true;
+        }
+        if (dir.x < -deadZoneToFlip)
+        {
+            facingRight = false;
+        }
+        weaponHolder.Flip(facingRight);
     }
 
     private void Jump(Vector2 dir)
