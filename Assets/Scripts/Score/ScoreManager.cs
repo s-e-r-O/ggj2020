@@ -11,6 +11,8 @@ public class ScoreManager : MonoBehaviour
     {
         if(instance == null)
         {
+            ScorePlayer1.text = "x0";
+            ScorePlayer2.text = "0x";
             instance = this;
         }
     }
