@@ -13,14 +13,14 @@ public class WeaponHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weapon = Instantiate(weaponPrefab);
+        weapon = Instantiate(weaponPrefab, transform);
         weapon.input = GetComponent<PlayerInput>();
         Flip(true);     
     }
 
     void Update()
     {
-        weapon.gameObject.transform.position = transform.position + 
+        weapon.gameObject.transform.position = transform.position +
             (Vector3)(isRight ? rightOffset : leftOffset);
     }
 

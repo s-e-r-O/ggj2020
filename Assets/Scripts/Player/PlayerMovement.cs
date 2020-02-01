@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 dir = input.GetMovement();
         Walk(dir);
-        if (input.GetJump())
+        if (input.GetJumpDown())
         {
             if (coll.onGround)
             {

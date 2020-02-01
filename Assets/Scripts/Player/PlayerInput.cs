@@ -14,12 +14,16 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetJump()
     {
+        return Input.GetButton(GetInputName("Jump"));
+    }
+    public bool GetJumpDown()
+    {
         return Input.GetButtonDown(GetInputName("Jump"));
     }
 
     public bool GetShoot()
     {
-        return Input.GetButtonDown(GetInputName("Fire1"));
+        return Input.GetButton(GetInputName("Fire1"));
     }
 
     private string GetInputName(string name)
