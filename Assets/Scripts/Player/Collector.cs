@@ -5,20 +5,16 @@ public class Collector : MonoBehaviour
     private int items = 0;
     public bool player;
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void AddScore()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Items"))
+        items++;
+        if (player)
         {
-            items++;
-            if (player)
-            {
-                ScoreManager.instance.ChangeScorePlayer1(items);
-            }
-            else
-            {
-                ScoreManager.instance.ChangeScorePlayer2(items);
-            }
-            Destroy(other.gameObject);
+            ScoreManager.instance.ChangeScorePlayer1(items);
+        }
+        else
+        {
+            ScoreManager.instance.ChangeScorePlayer2(items);
         }
     }
 }
