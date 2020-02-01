@@ -14,6 +14,7 @@ public class WeaponHolder : MonoBehaviour
     void Start()
     {
         weapon = Instantiate(weaponPrefab);
+        weapon.input = GetComponent<PlayerInput>();
         Flip(true);     
     }
 

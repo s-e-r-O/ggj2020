@@ -7,12 +7,12 @@ public class Weapon : MonoBehaviour
     public Bullet bulletPrefab;
     public Vector2 direction = Vector2.right;
     public float fireRate = 1f;
-    
-    
+    public PlayerInput input;
+
     private float nextFire;
     public void Update()
     {
-       if (Input.GetButton("Fire1"))
+       if (input.GetShoot())
         {
             Shoot();
         } 

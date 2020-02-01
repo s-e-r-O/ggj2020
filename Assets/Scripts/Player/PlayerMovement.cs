@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Collision coll;
     private WeaponHolder weaponHolder;
+    private PlayerInput input;
 
     [Header("Stats")]
 
@@ -22,16 +23,15 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         weaponHolder = GetComponent<WeaponHolder>();
+        input = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        Vector2 dir = new Vector2(x, y);
+        Vector2 dir = input.GetMovement();
         Walk(dir);
-        if (Input.GetButtonDown("Jump"))
+        if (input.GetJump())
         {
             if (coll.onGround)
             {
