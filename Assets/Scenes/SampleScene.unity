@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 926304443}
   - component: {fileID: 926304445}
   - component: {fileID: 926304444}
+  - component: {fileID: 926304446}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -688,6 +689,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.2
   lowJumpMultiplier: 2
+--- !u!114 &926304446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926304438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d5a16c34167ee4e94852b0281e58ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 9151397937768676787, guid: 2afd6a0742267354fb410349ffdc79f3,
+    type: 3}
+  rightOffset: {x: 0.75, y: 0}
+  leftOffset: {x: -0.75, y: 0}
 --- !u!1 &936537129
 GameObject:
   m_ObjectHideFlags: 0
