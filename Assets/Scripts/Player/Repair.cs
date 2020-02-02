@@ -4,17 +4,20 @@ using UnityEngine;
 public class Repair : MonoBehaviour
 {
     public int RepairCost = 1;
+    public int RepairHealthValue = 1;
     private PlayerInput input;
-    private GameObject player;
+    private Player otherPlayer;
+    private Player player;
 
     void Start()
     {
         input = GetComponentInParent<PlayerInput>();
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
     {
-        if (player != null && input.GetRepair())
+        if (otherPlayer != null && input.GetRepair())
         {
             RepairPlayer();
         }
@@ -24,7 +27,7 @@ public class Repair : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player = other.gameObject;
+            otherPlayer = other.gameObject.GetComponent<Player>();
         }
     }
 
@@ -32,18 +35,16 @@ public class Repair : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player = null;
+            otherPlayer = null;
         }
     }
 
     private void RepairPlayer()
     {
-        var collector = player.GetComponent<Collector>();
-        var health = player.GetComponent<Health>();
-        if (collector.Items >= RepairCost && health.CanAdd(RepairCost))
+        if (player.CanModifyItems(-RepairCost) && otherPlayer.CanModifyHealth())
         {
-            collector.Items -= RepairCost;
-            health.AddPoints(RepairCost);
+            player.RemoveItems(RepairCost);
+            otherPlayer.AddHealth(RepairHealthValue);
         }
     }
 }

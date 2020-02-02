@@ -24,13 +24,24 @@ public class HealthManager : MonoBehaviour
         ChangeHealthBar(barn1.transform, valueBarn1);
         ChangeHealthBar(barn2.transform, valueBarn2);
     }
+    public void ChangeHealthBar(int value, int player)
+    {
+        if (player == 1)
+        {
+            ChangeHealthBar1(value);
+        }
+        else
+        {
+            ChangeHealthBar2(value);
+        }
+    }
 
-    public void ChangeHealthBar1(int value)
+    private void ChangeHealthBar1(int value)
     {
         valueBarn1 = value;
     }
 
-    public void ChangeHealthBar2(int value)
+    private void ChangeHealthBar2(int value)
     {
         valueBarn2 = value;
     }

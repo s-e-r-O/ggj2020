@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Collector>().AddScore();
+            other.gameObject.GetComponentInParent<Player>().AddItems();
             Destroy(transform.parent.gameObject);
         }
     }
