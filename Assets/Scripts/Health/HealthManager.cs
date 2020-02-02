@@ -5,9 +5,11 @@ public class HealthManager : MonoBehaviour
     public GameObject playerBar1;
     public GameObject playerBar2;
     public GameObject towerBar1;
+    public GameObject towerBar2;
     private int valueBarn1;
     private int valueBarn2;
     private int valueTowerBarn1;
+    private int valueTowerBarn2;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class HealthManager : MonoBehaviour
         ChangeHealthBar(playerBar1.transform, valueBarn1);
         ChangeHealthBar(playerBar2.transform, valueBarn2);
         ChangeHealthBar(towerBar1.transform, valueTowerBarn1);
+        ChangeHealthBar(towerBar2.transform, valueTowerBarn2);
     }
     
     public void ChangeHealthBar(int value, int player)
@@ -56,11 +59,20 @@ public class HealthManager : MonoBehaviour
         {
             ChangeTowerHealthBar1(value);
         }
+        else if (tower ==2)
+        {
+            ChangeTowerHealthBar2(value);
+        }
     }
 
     private void ChangeTowerHealthBar1(int value)
     {
         valueTowerBarn1 = value;
+    }
+
+    private void ChangeTowerHealthBar2(int value)
+    {
+        valueTowerBarn2 = value;
     }
 
     private void ChangeHealthBar(Transform transform, int value)
@@ -74,6 +86,6 @@ public class HealthManager : MonoBehaviour
 
     private float GetBarScale(int value)
     {
-        return value / 100.0f;
+        return Mathf.Max(value / 100.0f, 0f);
     }
 }

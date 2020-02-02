@@ -31,15 +31,6 @@ public class Tower : MonoBehaviour
         StartCoroutine(LoseHealth());
     }
 
-    void Update()
-    {
-        if (Health > 0 && onRegenHealth == false)
-        {
-            onRegenHealth = true;
-            StartCoroutine("RegenHealth");
-        }
-    }
-
     IEnumerator LoseHealth()
     {
         while (true)
