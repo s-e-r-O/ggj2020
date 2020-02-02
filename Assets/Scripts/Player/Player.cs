@@ -130,7 +130,9 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log($" {player}: You are dead");
+        FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
+        GameObject.Find("Master").GetComponent<Master>().AnnounceDeath();
+        Destroy(gameObject);
     }
 
     public IEnumerator Invincbility()

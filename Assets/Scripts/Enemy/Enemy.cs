@@ -11,6 +11,13 @@ public class Enemy : MonoBehaviour
     public int numberOfItems = 3;
     public float itemForce = 10f;
     public AudioSource explosion;
+    public float TTL = 60f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Destroy(gameObject, TTL);
+    }
 
     public void Hurt(float damage, Vector2 position, bool isCritical)
     {
