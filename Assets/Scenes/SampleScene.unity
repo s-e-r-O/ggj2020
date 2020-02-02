@@ -3705,8 +3705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5560625f9715f43a0ffb72f2766d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScorePlayer1: {fileID: 98428501}
-  ScorePlayer2: {fileID: 1258357575}
+  ScorePlayer1: {fileID: 1258357575}
+  ScorePlayer2: {fileID: 98428501}
 --- !u!4 &1303218948
 Transform:
   m_ObjectHideFlags: 0
