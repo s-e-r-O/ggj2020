@@ -7,7 +7,11 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public float speed;
     public int secondsToDestroy;
-    public float damage = 25f;
+    public float damageMin = 5f;
+    public float damageMax = 10f;
+    public float damageCriticMin = 30f;
+    public float damageCriticMax = 40f;
+    public float damageCriticPercentage = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +33,9 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             ContactPoint2D contact = collision.contacts[0];
-            collision.gameObject.GetComponentInParent<Enemy>().Hurt(damage, contact.point);
+            bool isCritical = Random.Range(0f, 100f) <= damageCriticPercentage;
+            float damage = isCritical ? Random.Range(damageCriticMin, damageCriticMax) : Random.Range(damageMin, damageMax);
+            collision.gameObject.GetComponentInParent<Enemy>().Hurt(Mathf.Round(damage), contact.point, isCritical);
             Destroy(gameObject);
         }
     }

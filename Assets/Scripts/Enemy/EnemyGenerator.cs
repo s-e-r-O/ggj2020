@@ -8,7 +8,9 @@ public class EnemyGenerator : MonoBehaviour
     public List<Transform> entrances;
     public GameObject enemyPrefab;
     public float seconds;
+    public float secondsBetweenEnemies;
     public int numberOfEnemiesSpawned;
+    public int numberOfentrances;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,7 @@ public class EnemyGenerator : MonoBehaviour
 
                 EnemyMovement enemy = obj.GetComponent<EnemyMovement>();
                 enemy.direction = entrances[index].position.x > 0 ? Vector2.left : Vector2.right;
+                yield return new WaitForSeconds(secondsBetweenEnemies);
             }
         }
     }

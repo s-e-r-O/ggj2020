@@ -22,11 +22,15 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Hurt(float damage, Vector2 position)
+    public void Hurt(float damage, Vector2 position, bool isCritical)
     {
         var text = Instantiate(textPrefab, position, Quaternion.identity);
         var mesh = text.GetComponent<TextMesh>();
         mesh.text = damage.ToString();
+        if (isCritical)
+        {
+            mesh.color = Color.red;
+        }
 
         health = Mathf.Max(health-damage, 0);
         if (health <= 0)
