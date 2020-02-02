@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour
     public int tower;
     public int maxHealth = 100;
     private bool onRegenHealth;
+    public AudioSource repair;
 
     public int Health
     {
@@ -35,7 +36,7 @@ public class Tower : MonoBehaviour
     {
         while (true)
         {
-            AddHealth(-1);
+            Damage(1);
             yield return new WaitForSeconds(1);
         }
     }
@@ -45,6 +46,16 @@ public class Tower : MonoBehaviour
         if (CanModifyHealth())
         {
             Health = Mathf.Min(Health + value, maxHealth);
+            repair.Play();
+        }
+    }
+
+    public void Damage(int value)
+    {
+        Health = Mathf.Max(Health - value, 0);
+        if (Health <= 0)
+        {
+            Die();
         }
     }
 

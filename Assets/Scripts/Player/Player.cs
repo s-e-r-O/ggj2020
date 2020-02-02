@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public int maxItems = 100;
     public AudioSource collect;
+    public AudioSource repair;
 
     public int Health { 
         get { return _health; } 
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         if (CanModifyHealth())
         {
             Health = Mathf.Min(Health + value, maxHealth);
+            repair.Play();
             if (inDamage && Health > maxHealth/4)
             {
                 inDamage = false;
