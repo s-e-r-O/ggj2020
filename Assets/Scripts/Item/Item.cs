@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public int secondsToLive = 15;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(transform.parent.gameObject, secondsToLive);
     }
 
     void OnTriggerEnter2D(Collider2D other)

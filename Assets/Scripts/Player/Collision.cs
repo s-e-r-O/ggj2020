@@ -6,6 +6,7 @@ public class Collision : MonoBehaviour
 {
     [Header("Layers")]
     public LayerMask groundLayer;
+    public LayerMask limitLayer;
 
     [Space]
 
@@ -32,12 +33,14 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer) ||
+            Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, limitLayer);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
+            || Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, limitLayer);
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer) ||
+            Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, limitLayer);
+        onWall = onRightWall || onLeftWall;
 
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
         wallSide = onRightWall ? -1 : 1;
     }

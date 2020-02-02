@@ -205,6 +205,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  limitLayer:
+    serializedVersion: 2
+    m_Bits: 0
   onGround: 0
   onWall: 0
   onRightWall: 0
@@ -273,8 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 1
   maxHealth: 100
-  items: 0
-  health: 0
+  maxItems: 100
 --- !u!1001 &4710203145063256452
 PrefabInstance:
   m_ObjectHideFlags: 0
