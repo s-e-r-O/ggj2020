@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,15 +25,23 @@ public class Player : MonoBehaviour
             scoreManager.ChangeScore(_items, player);
         }
     }
+    public bool isInvincible;
+    public float invincibilityTime = 2f;
+    Sequence seq;
+    PlayerMovement pm;
+
     private int _items;
     private int _health;
     private ScoreManager scoreManager;
     private HealthManager healthManager;
+    private SpriteRenderer sr;
 
     void Awake()
     {
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     void Start()
@@ -67,10 +76,26 @@ public class Player : MonoBehaviour
 
     public void Damage(int value)
     {
-        Health = Mathf.Max(Health - value, 0);
-        if (Health <= 0)
+        if (!isInvincible)
         {
-            Die();
+            Health = Mathf.Max(Health - value, 0);
+            if (Health <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                pm.Push();
+                isInvincible = true;
+                seq = DOTween.Sequence();
+                seq.Append(sr.DOFade(0.5f, invincibilityTime / 8f));
+                seq.Append(sr.DOFade(1f, invincibilityTime / 8f));
+                seq.SetLoops(8);
+                seq.Play();
+                StartCoroutine(Invincbility());
+
+            }
+
         }
     }
 
@@ -86,5 +111,13 @@ public class Player : MonoBehaviour
     public void Die()
     {
         Debug.Log($" {player}: You are dead");
+    }
+
+    public IEnumerator Invincbility()
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        isInvincible = false;
+        seq.Kill();
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
     }
 }

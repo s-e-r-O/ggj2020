@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 30f;
     public float jumpForce = 30f;
+    public float hitPush = 5f;
 
     private bool facingRight = true;
     private float deadZoneToFlip = 0.05f;
@@ -77,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
         
+    }
+
+    internal void Push()
+    {
+        rb.velocity = (new Vector2(this.hitPush * (this.facingRight? -1 : 1), this.hitPush));
     }
 }
