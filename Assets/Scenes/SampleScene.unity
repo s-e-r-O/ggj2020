@@ -920,7 +920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.009999, y: -1.3175695, z: -10}
+  m_LocalPosition: {x: -1.010001, y: -1.3175695, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -35040,8 +35040,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2256369133818065406, guid: b7fc74b30959a194e827ae0d674c72c7,
     type: 3}
   difficulty: 0
-  enemiesLife: 100
-  enemiesDamage: 25
+  enemiesLife: 80
+  enemiesDamage: 10
   secondsDifficulty:
   - 10
   - 8
@@ -35057,7 +35057,7 @@ MonoBehaviour:
   - 1
   - 1
   numberOfEnemiesSpawnedDifficulty: 020000000300000003000000040000000500000006000000
-  numberOfentrancesDifficulty: 000000000000000000000000000000000000000000000000
+  numberOfentrancesDifficulty: 020000000300000004000000050000000600000006000000
   explosion: {fileID: 117739604}
 --- !u!4 &2076859953
 Transform:
@@ -35345,6 +35345,16 @@ PrefabInstance:
       propertyPath: jump
       value: 
       objectReference: {fileID: 1890571183}
+    - target: {fileID: 4544074062540276843, guid: 56eafa32d5d72904686b8a3c3103db83,
+        type: 3}
+      propertyPath: RepairCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544074062540276843, guid: 56eafa32d5d72904686b8a3c3103db83,
+        type: 3}
+      propertyPath: RepairHealthValue
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56eafa32d5d72904686b8a3c3103db83, type: 3}
 --- !u!1001 &6678898168414307860
@@ -35359,6 +35369,11 @@ PrefabInstance:
       propertyPath: repair
       value: 
       objectReference: {fileID: 66765179}
+    - target: {fileID: 3054552053157744949, guid: b1c413f9ca718364d8cf5f1eaade56e1,
+        type: 3}
+      propertyPath: loseHealthDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3054552053157744950, guid: b1c413f9ca718364d8cf5f1eaade56e1,
         type: 3}
       propertyPath: m_Name
@@ -35507,6 +35522,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835891783824799122, guid: 068a5b792964b7e4780a1e850198a7d7,
+        type: 3}
+      propertyPath: RepairHealthValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835891783824799122, guid: 068a5b792964b7e4780a1e850198a7d7,
+        type: 3}
+      propertyPath: RepairCost
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 068a5b792964b7e4780a1e850198a7d7, type: 3}

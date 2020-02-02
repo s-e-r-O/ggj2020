@@ -12,6 +12,8 @@ public class Master : MonoBehaviour
     private int numberOfTowers = 2;
     public bool isGameOver;
     public EnemyGenerator gen;
+    private int lastSecondDifficulty = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,7 @@ public class Master : MonoBehaviour
     {
         numberOfTowers = Mathf.Max(0, numberOfTowers-1);
         gen.StrongerEnemies();
-        gameOverText.text = "STRONGER ENEMIES";
+        if (!isGameOver) gameOverText.text = "STRONGER ENEMIES";
         StartCoroutine(ResetMessage());
     }
 
@@ -71,6 +73,14 @@ public class Master : MonoBehaviour
             string leadingH = seconds / 60 > 9 ? "" : "0";
             string leadings = seconds % 60 > 9 ? "" : "0";
             clockText.text = $"{leadingH}{seconds / 60}:{leadings}{seconds % 60}";
+
+            if (seconds - lastSecondDifficulty > 10) {
+                gen.Hardeeer();
+                lastSecondDifficulty = seconds;
+                if (!isGameOver) gameOverText.text = "DIFFICULTY UP";
+                StartCoroutine(ResetMessage());
+            }
+
         }
     }
 

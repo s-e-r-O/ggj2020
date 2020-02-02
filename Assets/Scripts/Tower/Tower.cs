@@ -63,7 +63,7 @@ public class Tower : MonoBehaviour
 
     public bool CanModifyHealth()
     {
-        return Health <= maxHealth;
+        return !isdead && Health <= maxHealth;
     }
 
     public void Die()
