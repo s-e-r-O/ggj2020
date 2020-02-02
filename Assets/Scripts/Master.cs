@@ -9,7 +9,9 @@ public class Master : MonoBehaviour
     public Text clockText;
     public Text gameOverText;
     private int numberOfPlayers = 2;
+    private int numberOfTowers = 2;
     public bool isGameOver;
+    public EnemyGenerator gen;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class Master : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameOver && Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire12"))
+        if (isGameOver && (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire12")))
         {
             Restart();
         }
@@ -35,6 +37,15 @@ public class Master : MonoBehaviour
         }
     }
 
+
+    public void AnnounceTowerDeath()
+    {
+        numberOfTowers = Mathf.Max(0, numberOfTowers-1);
+        gen.StrongerEnemies();
+        gameOverText.text = "STRONGER ENEMIES";
+        StartCoroutine(ResetMessage());
+    }
+
     void GameOver()
     {
         StopCoroutine(StartTimer());
@@ -46,8 +57,9 @@ public class Master : MonoBehaviour
     {
         seconds = 0;
         gameOverText.text = "";
-    numberOfPlayers = 2;
-    UnityEngine.Application.LoadLevel(UnityEngine.Application.loadedLevel);
+        numberOfPlayers = 2;
+        numberOfTowers = 2;
+        UnityEngine.Application.LoadLevel(UnityEngine.Application.loadedLevel);
     }
 
     IEnumerator StartTimer() 
@@ -59,6 +71,16 @@ public class Master : MonoBehaviour
             string leadingH = seconds / 60 > 9 ? "" : "0";
             string leadings = seconds % 60 > 9 ? "" : "0";
             clockText.text = $"{leadingH}{seconds / 60}:{leadings}{seconds % 60}";
+        }
+    }
+
+
+    IEnumerator ResetMessage()
+    {
+        yield return new WaitForSeconds(2);
+        if (!isGameOver)
+        {
+            gameOverText.text = "";
         }
     }
 }

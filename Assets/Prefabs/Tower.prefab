@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: 1
   maxHealth: 100
+  repair: {fileID: 0}
+  isdead: 0
 --- !u!61 &5418880900314008479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,7 +135,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054552053157744950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 16462cf2a6e861946a9b441612df147b, type: 2}
   m_CullingMode: 0

@@ -7,11 +7,16 @@ public class EnemyGenerator : MonoBehaviour
 
     public List<Transform> entrances;
     public GameObject enemyPrefab;
-    public float seconds;
-    public float secondsBetweenEnemies;
-    public int numberOfEnemiesSpawned;
-    public int numberOfentrances;
+    public int difficulty = 0;
+    public int enemiesLife = 100;
+    public int enemiesDamage = 25;
+    public List<float> secondsDifficulty;
+    public List<float> secondsBetweenEnemiesDifficulty;
+    public List<int> numberOfEnemiesSpawnedDifficulty;
+    public List<int> numberOfentrancesDifficulty;
     public AudioSource explosion;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,19 +34,32 @@ public class EnemyGenerator : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(seconds);
+            yield return new WaitForSeconds(secondsDifficulty[difficulty]);
 
-            for (int i = 0; i < numberOfEnemiesSpawned; i++)
+            for (int i = 0; i < numberOfEnemiesSpawnedDifficulty[difficulty]; i++)
             {
-                int index = Random.Range(0, entrances.Count);
+                int index = Random.Range(0, numberOfentrancesDifficulty[difficulty]);
 
                 var obj = Instantiate(enemyPrefab, entrances[index].position, entrances[index].rotation);
                 obj.GetComponent<Enemy>().explosion = explosion;
+                obj.GetComponent<Enemy>().health = enemiesLife;
+                obj.GetComponent<Enemy>().ModifyDamage(enemiesDamage);
 
                 EnemyMovement enemy = obj.GetComponent<EnemyMovement>();
                 enemy.direction = entrances[index].position.x > 0 ? Vector2.left : Vector2.right;
-                yield return new WaitForSeconds(secondsBetweenEnemies);
+                yield return new WaitForSeconds(secondsBetweenEnemiesDifficulty[difficulty]);
             }
         }
+    }
+
+    public void Hardeeer()
+    {
+        difficulty = Mathf.Min(secondsDifficulty.Count, difficulty + 1);
+    }
+
+    public void StrongerEnemies()
+    {
+        enemiesLife += 25;
+        enemiesDamage += 10;
     }
 }

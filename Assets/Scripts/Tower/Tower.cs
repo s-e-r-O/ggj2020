@@ -7,6 +7,8 @@ public class Tower : MonoBehaviour
     public int maxHealth = 100;
     private bool onRegenHealth;
     public AudioSource repair;
+    public bool isdead;
+    public int loseHealthDamage = 3;
 
     public int Health
     {
@@ -34,9 +36,9 @@ public class Tower : MonoBehaviour
 
     IEnumerator LoseHealth()
     {
-        while (true)
+        while (!isdead)
         {
-            Damage(1);
+            Damage(loseHealthDamage);
             yield return new WaitForSeconds(1);
         }
     }
@@ -66,6 +68,7 @@ public class Tower : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log($" {tower}: Have been destroy");
+        isdead = true;
+        GameObject.Find("Master").GetComponent<Master>().AnnounceTowerDeath();
     }
 }

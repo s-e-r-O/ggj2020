@@ -36,6 +36,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void ModifyDamage(int value)
+    {
+        GetComponentInChildren<EnemyDamage>().damage = value;
+    }
+
     void Die()
     {
         for (int i = 0; i < numberOfItems; i++)
