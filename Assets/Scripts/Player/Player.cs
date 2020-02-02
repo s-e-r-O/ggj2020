@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     }
     public bool isInvincible;
     public float invincibilityTime = 2f;
+    public bool inDamage;
+
     Sequence seq;
     PlayerMovement pm;
 
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     private ScoreManager scoreManager;
     private HealthManager healthManager;
     private SpriteRenderer sr;
+    private ParticleSystem pr;
 
     void Awake()
     {
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
         healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
         sr = GetComponentInChildren<SpriteRenderer>();
         pm = GetComponent<PlayerMovement>();
+        pr = GetComponentInChildren<ParticleSystem>();
     }
 
     void Start()
@@ -71,6 +75,11 @@ public class Player : MonoBehaviour
         if (CanModifyHealth())
         {
             Health = Mathf.Min(Health + value, maxHealth);
+            if (inDamage && Health > maxHealth/4)
+            {
+                inDamage = false;
+                pr.Stop();
+            }
         }
     }
 
@@ -79,12 +88,18 @@ public class Player : MonoBehaviour
         if (!isInvincible)
         {
             Health = Mathf.Max(Health - value, 0);
+
             if (Health <= 0)
             {
                 Die();
             }
             else
             {
+                if (!inDamage && Health <= maxHealth / 4)
+                {
+                    inDamage = true;
+                    pr.Play();
+                }
                 pm.Push();
                 isInvincible = true;
                 seq = DOTween.Sequence();
