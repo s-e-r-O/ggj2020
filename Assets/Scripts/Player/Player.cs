@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Health = 0;
+        Health = maxHealth;
         Items = 0;
     }
 
