@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         transform.position = (Vector2)transform.position + direction * speed * Time.deltaTime;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
@@ -28,7 +28,8 @@ public class Bullet : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponentInParent<Enemy>().Hurt(damage);
+            ContactPoint2D contact = collision.contacts[0];
+            collision.gameObject.GetComponentInParent<Enemy>().Hurt(damage, contact.point);
             Destroy(gameObject);
         }
     }

@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 2256369133818065406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.96, y: -2.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.4, z: 1}
   m_Children:
   - {fileID: 2256369134150168129}
   - {fileID: 406179734}
@@ -194,6 +194,8 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 6183222126971108300, guid: 73b8c0d3c63c82440a8914d5eaf05f62, type: 3}
   - {fileID: 6310342740611501095, guid: 91ee695fc9e6e024b81ced147c016708, type: 3}
+  textPrefab: {fileID: 3895680046529937353, guid: a179ebb6a17d9ea4a879aaa85758fd7e,
+    type: 3}
   numberOfItems: 25
   itemForce: 400
 --- !u!114 &1179858747
@@ -208,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1516b452ca046a04d96e28ef31016687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 1
   direction: {x: 1, y: 0}
 --- !u!1 &2256369134150168130
 GameObject:

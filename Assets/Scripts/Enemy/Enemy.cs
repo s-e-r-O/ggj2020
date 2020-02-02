@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float health = 100f;
     public List<GameObject> itemPrefabs;
+    public GameObject textPrefab;
     public int numberOfItems = 3;
     public float itemForce = 10f;
 
@@ -21,8 +22,12 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, Vector2 position)
     {
+        var text = Instantiate(textPrefab, position, Quaternion.identity);
+        var mesh = text.GetComponent<TextMesh>();
+        mesh.text = damage.ToString();
+
         health = Mathf.Max(health-damage, 0);
         if (health <= 0)
         {
@@ -35,9 +40,13 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < numberOfItems; i++)
         {
             int index = Random.Range(0, itemPrefabs.Count);
-            GameObject item = Instantiate(itemPrefabs[index], transform.position, transform.rotation);
+            Quaternion rotation = Random.rotation;
+            rotation.x = 0;
+            rotation.y = 0; 
+            GameObject item = Instantiate(itemPrefabs[index], transform.position, rotation);
             Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
-
+            SpriteRenderer sr = item.GetComponentInChildren<SpriteRenderer>();
+            sr.flipX = Random.Range(0, 2) == 0;
             Vector2 force = new Vector2(Random.Range(-1f, 1f), Random.Range(0.3f, 1f)) * itemForce;
             
             rb.AddForce(force);
