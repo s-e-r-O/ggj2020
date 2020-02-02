@@ -7382,7 +7382,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2256369133818065406, guid: b7fc74b30959a194e827ae0d674c72c7,
     type: 3}
   seconds: 5
+  secondsBetweenEnemies: 0
   numberOfEnemiesSpawned: 3
+  numberOfentrances: 0
 --- !u!4 &2076859953
 Transform:
   m_ObjectHideFlags: 0

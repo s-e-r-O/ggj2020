@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public Vector2 direction = Vector2.right;
     public float fireRate = 1f;
     public PlayerInput input;
+    public AudioSource shoot;
 
     private float nextFire;
     public void Update()
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
             Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bullet.direction = direction;
             nextFire = Time.time + fireRate;
+            shoot.Play();
         }
     }
 }

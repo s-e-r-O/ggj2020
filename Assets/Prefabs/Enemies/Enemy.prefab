@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdca9a42417056442a18baba36970e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   itemPrefabs:
   - {fileID: 6183222126971108300, guid: 73b8c0d3c63c82440a8914d5eaf05f62, type: 3}
   - {fileID: 6310342740611501095, guid: 91ee695fc9e6e024b81ced147c016708, type: 3}
@@ -199,6 +199,7 @@ MonoBehaviour:
     type: 3}
   numberOfItems: 25
   itemForce: 400
+  explosion: {fileID: 0}
 --- !u!114 &1179858747
 MonoBehaviour:
   m_ObjectHideFlags: 0

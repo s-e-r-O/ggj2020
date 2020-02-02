@@ -10,17 +10,7 @@ public class Enemy : MonoBehaviour
     public GameObject textPrefab;
     public int numberOfItems = 3;
     public float itemForce = 10f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioSource explosion;
 
     public void Hurt(float damage, Vector2 position, bool isCritical)
     {
@@ -56,7 +46,7 @@ public class Enemy : MonoBehaviour
             rb.AddForce(force);
         }
         FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
-
+        explosion.Play();
         Destroy(gameObject);
     }
 }

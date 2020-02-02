@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioSource jump;
     private Rigidbody2D rb;
     private Collision coll;
     private WeaponHolder weaponHolder;
@@ -78,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
-        
+        jump.Play();
+
     }
 
     internal void Push()

@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public int player;
     public int maxHealth = 100;
     public int maxItems = 100;
+    public AudioSource collect;
+
     public int Health { 
         get { return _health; } 
         set 
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     {
         if (CanModifyItems(value))
         {
+            collect.Play();
             Items = Mathf.Min(Items + value, maxItems);
         }
     }
