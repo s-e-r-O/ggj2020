@@ -2,28 +2,32 @@
 
 public class HealthManager : MonoBehaviour
 {
-    public GameObject barn1;
-    public GameObject barn2;
+    public GameObject playerBar1;
+    public GameObject playerBar2;
+    public GameObject towerBar1;
     private int valueBarn1;
     private int valueBarn2;
+    private int valueTowerBarn1;
 
     void Start()
     {
-        barn1.transform.localScale = new Vector3(
+        playerBar1.transform.localScale = new Vector3(
                 GetBarScale(valueBarn1),
-                barn1.transform.localScale.y,
-                barn1.transform.localScale.z);
-        barn2.transform.localScale = new Vector3(
+                playerBar1.transform.localScale.y,
+                playerBar1.transform.localScale.z);
+        playerBar2.transform.localScale = new Vector3(
             GetBarScale(valueBarn2),
-            barn1.transform.localScale.y,
-            barn1.transform.localScale.z);
+            playerBar1.transform.localScale.y,
+            playerBar1.transform.localScale.z);
     }
 
     void Update()
     {
-        ChangeHealthBar(barn1.transform, valueBarn1);
-        ChangeHealthBar(barn2.transform, valueBarn2);
+        ChangeHealthBar(playerBar1.transform, valueBarn1);
+        ChangeHealthBar(playerBar2.transform, valueBarn2);
+        ChangeHealthBar(towerBar1.transform, valueTowerBarn1);
     }
+    
     public void ChangeHealthBar(int value, int player)
     {
         if (player == 1)
@@ -44,6 +48,19 @@ public class HealthManager : MonoBehaviour
     private void ChangeHealthBar2(int value)
     {
         valueBarn2 = value;
+    }
+
+    public void ChangeTowerHealthBar(int value, int tower)
+    {
+        if (tower == 1)
+        {
+            ChangeTowerHealthBar1(value);
+        }
+    }
+
+    private void ChangeTowerHealthBar1(int value)
+    {
+        valueTowerBarn1 = value;
     }
 
     private void ChangeHealthBar(Transform transform, int value)

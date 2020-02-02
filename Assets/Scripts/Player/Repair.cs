@@ -1,13 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Repair : MonoBehaviour
 {
     public int RepairCost = 1;
     public int RepairHealthValue = 1;
     private PlayerInput input;
-    private Player otherPlayer;
     private Player player;
+    private Player otherPlayer;
+    private Tower tower;
 
     void Start()
     {
@@ -20,6 +20,9 @@ public class Repair : MonoBehaviour
         if (otherPlayer != null && input.GetRepair())
         {
             RepairPlayer();
+        }else if (tower != null && input.GetRepair())
+        {
+            RepairTower();
         }
     }
 
@@ -29,6 +32,10 @@ public class Repair : MonoBehaviour
         {
             otherPlayer = other.gameObject.GetComponent<Player>();
         }
+        else if (other.gameObject.tag == "Tower")
+        {
+            tower = other.gameObject.GetComponent<Tower>();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -36,6 +43,10 @@ public class Repair : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             otherPlayer = null;
+        }
+        else if (other.gameObject.tag == "Tower")
+        {
+            tower = null;
         }
     }
 
@@ -45,6 +56,15 @@ public class Repair : MonoBehaviour
         {
             player.RemoveItems(RepairCost);
             otherPlayer.AddHealth(RepairHealthValue);
+        }
+    }
+
+    private void RepairTower()
+    {
+        if (player.CanModifyItems(-RepairCost) && tower.CanModifyHealth())
+        {
+            player.RemoveItems(RepairCost);
+            tower.AddHealth(RepairHealthValue);
         }
     }
 }
