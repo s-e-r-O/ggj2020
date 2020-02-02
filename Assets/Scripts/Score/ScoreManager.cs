@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI ScorePlayer1;
-    public TextMeshProUGUI ScorePlayer2;
+    public Text ScorePlayer1;
+    public Text ScorePlayer2;
 
     public void ChangeScore(int value, int player)
     {
@@ -20,11 +21,11 @@ public class ScoreManager : MonoBehaviour
 
     private void ChangeScorePlayer1(int value)
     {
-        ScorePlayer1.text = "x" + value.ToString();
+        ScorePlayer1.text = value.ToString();
     }
 
     private void ChangeScorePlayer2(int value)
     {
-        ScorePlayer2.text = value.ToString() + "x";
+        ScorePlayer2.text = value.ToString();
     }
 }

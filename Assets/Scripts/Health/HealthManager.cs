@@ -74,6 +74,6 @@ public class HealthManager : MonoBehaviour
 
     private float GetBarScale(int value)
     {
-        return (value * 4.0f) / 100.0f;
+        return value / 100.0f;
     }
 }
