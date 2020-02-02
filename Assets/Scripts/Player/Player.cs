@@ -67,7 +67,11 @@ public class Player : MonoBehaviour
 
     public void Damage(int value)
     {
-        Health = Mathf.Max(Health- value, 0);
+        Health = Mathf.Max(Health - value, 0);
+        if (Health <= 0)
+        {
+            Die();
+        }
     }
 
     public bool CanModifyItems(int value = 0)
@@ -77,5 +81,10 @@ public class Player : MonoBehaviour
     public bool CanModifyHealth()
     {
         return Health <= maxHealth;
+    }
+
+    public void Die()
+    {
+        Debug.Log($" {player}: You are dead");
     }
 }

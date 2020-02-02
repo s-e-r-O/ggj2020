@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 7037901713986475014, guid: e223579c6f569274da16a3460aac14e6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e223579c6f569274da16a3460aac14e6, type: 3}
@@ -1238,6 +1238,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8d455cadca5990d408b331f777d12a0d,
         type: 3}
+    - target: {fileID: 3138086412829932273, guid: 56eafa32d5d72904686b8a3c3103db83,
+        type: 3}
+      propertyPath: player
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4544074062479630722, guid: 56eafa32d5d72904686b8a3c3103db83,
         type: 3}
       propertyPath: m_Name
@@ -1327,7 +1332,7 @@ PrefabInstance:
     - target: {fileID: 4544074062479630735, guid: 56eafa32d5d72904686b8a3c3103db83,
         type: 3}
       propertyPath: jumpForce
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4544074062479630836, guid: 56eafa32d5d72904686b8a3c3103db83,
         type: 3}
@@ -6822,7 +6827,7 @@ PrefabInstance:
     - target: {fileID: 8576190457646240054, guid: f9fe6f8593c280a47b7df7652d8fab2b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8576190457646240055, guid: f9fe6f8593c280a47b7df7652d8fab2b,
         type: 3}
