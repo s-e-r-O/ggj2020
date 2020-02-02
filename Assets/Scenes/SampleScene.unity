@@ -896,7 +896,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -920,7 +920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.010001, y: -1.3175695, z: -10}
+  m_LocalPosition: {x: -1.01, y: 3.6824305, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3480,6 +3480,7 @@ MonoBehaviour:
   gameOverText: {fileID: 798515090}
   isGameOver: 0
   gen: {fileID: 2076859952}
+  timeBetwenDifficultyUp: 30
 --- !u!4 &1185093577
 Transform:
   m_ObjectHideFlags: 0
@@ -35369,11 +35370,6 @@ PrefabInstance:
       propertyPath: repair
       value: 
       objectReference: {fileID: 66765179}
-    - target: {fileID: 3054552053157744949, guid: b1c413f9ca718364d8cf5f1eaade56e1,
-        type: 3}
-      propertyPath: loseHealthDamage
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3054552053157744950, guid: b1c413f9ca718364d8cf5f1eaade56e1,
         type: 3}
       propertyPath: m_Name

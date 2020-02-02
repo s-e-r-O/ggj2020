@@ -101,6 +101,7 @@ MonoBehaviour:
   maxHealth: 100
   repair: {fileID: 0}
   isdead: 0
+  loseHealthDamage: 2
 --- !u!61 &5418880900314008479
 BoxCollider2D:
   m_ObjectHideFlags: 0

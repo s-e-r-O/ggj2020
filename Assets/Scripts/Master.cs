@@ -13,6 +13,7 @@ public class Master : MonoBehaviour
     public bool isGameOver;
     public EnemyGenerator gen;
     private int lastSecondDifficulty = 0;
+    public int timeBetwenDifficultyUp = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +75,7 @@ public class Master : MonoBehaviour
             string leadings = seconds % 60 > 9 ? "" : "0";
             clockText.text = $"{leadingH}{seconds / 60}:{leadings}{seconds % 60}";
 
-            if (seconds - lastSecondDifficulty > 10) {
+            if (seconds - lastSecondDifficulty > timeBetwenDifficultyUp) {
                 gen.Hardeeer();
                 lastSecondDifficulty = seconds;
                 if (!isGameOver) gameOverText.text = "DIFFICULTY UP";
