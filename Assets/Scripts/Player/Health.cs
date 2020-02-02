@@ -2,33 +2,41 @@
 
 public class Health : MonoBehaviour
 {
-    private int health = 100;
-    private int max = 100;
-    private int min = 0;
+    public int Points { get; set; }
+    public int Max = 100;
+    public int Min = 0;
     public bool player;
+    public HealthManager healthManager;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Start()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        Points = 50;
+        ChangeHealthBar();
+    }
+
+    public void AddPoints(int value)
+    {
+        if (CanAdd(value))
         {
-            ChangeHealth(-10);
-            Destroy(other.gameObject);
+            Points += value;
+            ChangeHealthBar();
         }
     }
 
-    private void ChangeHealth(int value)
+    public bool CanAdd(int value)
     {
-        if ((health+value) <= max && (health + value) >= min)
+        return (Points + value) <= Max && (Points + value) >= Min;
+    }
+
+    public void ChangeHealthBar()
+    {
+        if (player)
         {
-            health += value;
-            if (player)
-            {
-                HealthManager.instance.ChangeHealthBar1(health);
-            }
-            else
-            {
-                HealthManager.instance.ChangeHealthBar2(health);
-            }
+            healthManager.ChangeHealthBar1(Points);
+        }
+        else
+        {
+            healthManager.ChangeHealthBar2(Points);
         }
     }
 }

@@ -26,6 +26,11 @@ public class PlayerInput : MonoBehaviour
         return Input.GetButton(GetInputName("Fire1"));
     }
 
+    public bool GetRepair()
+    {
+        return Input.GetButtonDown(GetInputName("Fire2"));
+    }
+
     private string GetInputName(string name)
     {
         return name + (player == 1 ? "" : "2");

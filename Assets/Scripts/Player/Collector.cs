@@ -2,19 +2,31 @@
 
 public class Collector : MonoBehaviour
 {
-    private int items = 0;
+    public int Items { set; get; } = 0;
     public bool player;
+    public ScoreManager scoreManager;
+
+    void Start()
+    {
+        Items = 100;
+        ChangeScore();
+    }
 
     public void AddScore()
     {
-        items++;
+        Items++;
+        ChangeScore();
+    }
+
+    public void ChangeScore()
+    {
         if (player)
         {
-            ScoreManager.instance.ChangeScorePlayer1(items);
+            scoreManager.ChangeScorePlayer1(Items);
         }
         else
         {
-            ScoreManager.instance.ChangeScorePlayer2(items);
+            scoreManager.ChangeScorePlayer2(Items);
         }
     }
 }
