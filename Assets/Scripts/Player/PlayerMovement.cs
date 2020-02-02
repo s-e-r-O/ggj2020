@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Collision coll;
     private WeaponHolder weaponHolder;
     private PlayerInput input;
+    private SpriteRenderer sr;
+    private Animator anim;
 
     [Header("Stats")]
 
@@ -24,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<Collision>();
         weaponHolder = GetComponent<WeaponHolder>();
         input = GetComponent<PlayerInput>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -38,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
                 Jump(Vector2.up);
             }
         }
-        
+        anim.SetFloat("HorizontalMovement", coll.onGround? rb.velocity.x / speed : 0f);
+        anim.SetBool("IsGround", coll.onGround);
     }
 
     private void Walk(Vector2 dir)
@@ -47,12 +52,23 @@ public class PlayerMovement : MonoBehaviour
         if (dir.x > deadZoneToFlip)
         {
             facingRight = true;
+            sr.flipX = false;
+            if (coll.onRightWall)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
         if (dir.x < -deadZoneToFlip)
         {
             facingRight = false;
+            sr.flipX = true;
+            if (coll.onLeftWall)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
         weaponHolder.Flip(facingRight);
+
     }
 
     private void Jump(Vector2 dir)
