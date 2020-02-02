@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public float health = 100f;
-    public GameObject itemPrefab;
+    public List<GameObject> itemPrefabs;
     public int numberOfItems = 3;
     public float itemForce = 10f;
 
@@ -33,13 +34,16 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < numberOfItems; i++)
         {
-            GameObject item = Instantiate(itemPrefab, transform.position, transform.rotation);
+            int index = Random.Range(0, itemPrefabs.Count);
+            GameObject item = Instantiate(itemPrefabs[index], transform.position, transform.rotation);
             Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
 
             Vector2 force = new Vector2(Random.Range(-1f, 1f), Random.Range(0.3f, 1f)) * itemForce;
             
             rb.AddForce(force);
         }
+        FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
+
         Destroy(gameObject);
     }
 }
