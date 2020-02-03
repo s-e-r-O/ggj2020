@@ -54,7 +54,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public void Hardeeer()
     {
-        difficulty = Mathf.Min(secondsDifficulty.Count, difficulty + 1);
+        difficulty = Mathf.Min(secondsDifficulty.Count-1, difficulty + 1);
     }
 
     public void StrongerEnemies()
